@@ -10,7 +10,8 @@ data "aws_vpc" "this" {
   }
 }
 
-data "aws_subnet" "this" {
+data "aws_subnet_ids" "this" {
+  vpc_id = data.aws_vpc.this.id
   filter {
     name   = "tag:Name"
     values = ["*${var.subnet_filter}*"]
@@ -58,9 +59,9 @@ resource "aws_efs_file_system" "this" {
 }
 
 resource "aws_efs_mount_target" "this" {
-  count          = length(data.aws_subnet.this) > 0 ? length(data.aws_subnet.this) : 0
+  count          = length(data.aws_subnet_ids.this) > 0 ? length(data.aws_subnet_ids.this) : 0
   file_system_id = aws_efs_file_system.this.id
-  subnet_id      = data.aws_subnet.this[count.index].id
+  subnet_id      = data.aws_subnet_ids.this[count.index].id
   security_groups = [
     aws_security_group.this.id
   ]
