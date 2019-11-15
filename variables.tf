@@ -20,4 +20,5 @@ variable "tags" {
 variable "subnet_filter" {
   description = "Tag name to filter on for the EFS mount targets"
   type        = string
+  default     = "private"
 }

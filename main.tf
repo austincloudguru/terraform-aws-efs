@@ -22,9 +22,9 @@ data "aws_subnet" "this" {
 #------------------------------------------------------------------------------
 
 resource "aws_security_group" "this" {
-  name = var.efs_name
+  name        = var.efs_name
   description = "Allows for NFS traffic for ${var.efs_name}"
-  vpc_id = data.aws_vpc.this.id
+  vpc_id      = data.aws_vpc.this.id
   ingress {
     from_port = 2049
     protocol  = "tcp"
