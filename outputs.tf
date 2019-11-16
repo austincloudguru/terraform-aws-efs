@@ -3,6 +3,11 @@ output "arn" {
   description = "EFS ARN"
 }
 
+output "id" {
+  value       = aws_efs_file_system.this.id
+  description = "EFS ID"
+}
+
 output "dns_name" {
   value = aws_efs_file_system.this.dns_name
   description = "EFS DNS name"

@@ -33,6 +33,7 @@ module "efs" {
 | Name | Description |
 |------|-------------|
 | arn | EFS ARN |
+| id | EFS ID | 
 | dns_name | EFS DNS name |
 | security_group_id | EFS Security Group ID |
 | security_group_arn | EFS Security Group ARN |
