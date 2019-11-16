@@ -1,5 +1,5 @@
 output "arn" {
-  value       = aws_efs_file_system.this.arn)
+  value       = aws_efs_file_system.this.arn
   description = "EFS ARN"
 }
 
