@@ -18,6 +18,11 @@ data "aws_subnet_ids" "this" {
   }
 }
 
+locals {
+  subnet_ids_string = join(",", data.aws_subnet_ids.this.ids)
+  subnet_ids_list   = split(",", local.subnet_ids_string)
+}
+
 #------------------------------------------------------------------------------
 # Create EFS
 #------------------------------------------------------------------------------
@@ -61,7 +66,7 @@ resource "aws_efs_file_system" "this" {
 resource "aws_efs_mount_target" "this" {
   count          = length(data.aws_subnet_ids.this) > 0 ? length(data.aws_subnet_ids.this) : 0
   file_system_id = aws_efs_file_system.this.id
-  subnet_id      = tolist(data.aws_subnet_ids.this.ids)[count.index]
+  subnet_id      = local.subnet_ids_list[count.index]
   security_groups = [
     aws_security_group.this.id
   ]
