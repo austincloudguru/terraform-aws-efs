@@ -12,10 +12,13 @@ data "aws_vpc" "this" {
 
 data "aws_subnet_ids" "this" {
   vpc_id = data.aws_vpc.this.id
-  filter {
-    name   = "tag:Name"
-    values = ["*${var.subnet_filter}*"]
+  tags = {
+    Name = "*${var.subnet_filter}*"
   }
+//  filter {
+//    name   = "tag:Name"
+//    values = ["*${var.subnet_filter}*"]
+//  }
 }
 
 locals {
