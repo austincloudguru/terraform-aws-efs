@@ -67,7 +67,7 @@ resource "aws_efs_file_system" "this" {
 }
 
 resource "aws_efs_mount_target" "this" {
-  count          = length(data.aws_subnet_ids.this) > 0 ? length(data.aws_subnet_ids.this) : 0
+  count          = length(data.aws_subnet_ids.this.ids) > 0 ? length(data.aws_subnet_ids.this.ids) : 0
   file_system_id = aws_efs_file_system.this.id
   subnet_id      = local.subnet_ids_list[count.index]
   security_groups = [
