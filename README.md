@@ -1,5 +1,5 @@
 # AWS EFS Terraform Module
-Terraform module that creates an Elastic File System on AWS.
+Terraform module that creates an Elastic File System on AWS along with the mount targets.  It also creates a security group that allows access to 2049 to any instance that has the security group attached to it.  
 
 # Terraform versions
 Terraform 0.12
