@@ -27,3 +27,8 @@ output "security_group_name" {
   value       = aws_security_group.this.name
   description = "EFS Security Group name"
 }
+
+output "mount_target_ids" {
+  value       = [aws_efs_mount_target.this.*.id]
+  description = "List of EFS mount target IDs (one per Availability Zone)"
+}
