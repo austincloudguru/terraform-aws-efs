@@ -29,6 +29,6 @@ output "security_group_name" {
 }
 
 output "mount_target_ids" {
-  value       = [aws_efs_mount_target.this.*.id]
+  value       = coalescelist(aws_efs_mount_target.this.*.id, [""])
   description = "List of EFS mount target IDs (one per Availability Zone)"
 }
