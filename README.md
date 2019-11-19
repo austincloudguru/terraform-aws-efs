@@ -7,11 +7,12 @@ Terraform 0.12
 ## Usage
 
 ```hcl
-module "efs" {
-  source        = "github.com/austincloudguru/terraform-aws-efs"
-  vpc_name      = "development"
+module "efs-0" {
+  source        = "AustinCloudGuru/efs/aws"
+  version       = "0.2.2"
+  vpc_id        = "development"
   efs_name      = "dev-efs"
-  subnet_filter = "private"
+  subnet_ids    = ["subnet-05b1a3ffd786709d5", "subnet-0a35212c972a2af05", "subnet-0d0e78f696428aa28"]
   tags          = {
                     Terraform = "true"
                     Environment = "development"
