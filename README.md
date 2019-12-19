@@ -10,7 +10,7 @@ Terraform 0.12
 module "efs-0" {
   source        = "AustinCloudGuru/efs/aws"
   version       = "0.2.2"
-  vpc_name      = "development"
+  vpc_id        = "vpc-0156c7c6959ba5858"
   efs_name      = "dev-efs"
   subnet_ids    = ["subnet-05b1a3ffd786709d5", "subnet-0a35212c972a2af05", "subnet-0d0e78f696428aa28"]
   tags          = {
@@ -24,7 +24,7 @@ module "efs-0" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| vpc_name | The name of the VPC that EFS will be deployed to | string | | yes |
+| vpc_name | The id of the VPC that EFS will be deployed to | string | | yes |
 | efs_name | The name of the Elastic File System | string | | yes |
 | subnet_filter | Tag name to filter on for the EFS mount targets | string | "private" | no
 | tags | A map of tags to add to all resources | map(string) | {} | no
