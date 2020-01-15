@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 variable "efs_name" {
   description = "The name of the Elastic File System"
-  type        = "string"
+  type        = string
 }
 
 variable "vpc_id" {
