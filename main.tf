@@ -3,36 +3,46 @@
 #------------------------------------------------------------------------------
 
 resource "aws_security_group" "this" {
-  name        = var.efs_name
-  description = "Allows for NFS traffic for ${var.efs_name}"
+  name        = var.name
+  description = "Allows for NFS traffic for ${var.name}"
   vpc_id      = var.vpc_id
-  ingress {
-    from_port = 2049
-    protocol  = "tcp"
-    to_port   = 2049
-    self      = true
+
+  dynamic "ingress" {
+    for_each = var.security_group_ingress
+    content {
+      from_port   = lookup(ingress.value, "from_port", null)
+      protocol    = lookup(ingress.value, "protocol", null)
+      to_port     = lookup(ingress.value, "to_port", null)
+      self        = lookup(ingress.value, "self", null)
+      cidr_blocks = lookup(ingress.value, "cidr_blocks", null)
+    }
   }
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "-1"
-    cidr_blocks = [
-    "0.0.0.0/0"]
+
+  dynamic "egress" {
+    for_each = var.security_group_egress
+    content {
+      from_port   = lookup(egress.value, "from_port", null)
+      protocol    = lookup(egress.value, "protocol", null)
+      to_port     = lookup(egress.value, "to_port", null)
+      self        = lookup(egress.value, "self", null)
+      cidr_blocks = lookup(egress.value, "cidr_blocks", null)
+    }
   }
+
   tags = merge(
     {
-      "Name" = var.efs_name
+      "Name" = var.name
     },
     var.tags
   )
 }
 
 resource "aws_efs_file_system" "this" {
-  creation_token = var.efs_name
+  creation_token = var.name
 
   tags = merge(
     {
-      "Name" = var.efs_name
+      "Name" = var.name
     },
     var.tags
   )

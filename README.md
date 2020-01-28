@@ -25,7 +25,9 @@ module "efs-0" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | vpc_name | The id of the VPC that EFS will be deployed to | string | | yes |
-| efs_name | The name of the Elastic File System | string | | yes |
+| name | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | string | | yes |
+| security_group_ingress | Can be specified multiple times for each ingress rule. Each ingress block supports fields documented below | list(object) | | no |
+| security_group_egress | Can be specified multiple times for each egress rule. Each egress block supports fields documented below | list(object) | | no |
 | subnet_filter | Tag name to filter on for the EFS mount targets | string | "private" | no
 | tags | A map of tags to add to all resources | map(string) | {} | no
 
