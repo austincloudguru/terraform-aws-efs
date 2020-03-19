@@ -1,9 +1,6 @@
 # AWS EFS Terraform Module
 Terraform module that creates an Elastic File System on AWS along with the mount targets.  It also creates a security group that allows access to 2049 to any instance that has the security group attached to it.  
 
-# Terraform versions
-Terraform 0.12
-
 ## Usage
 
 ```hcl
@@ -19,25 +16,34 @@ module "efs-0" {
                   } 
 }
 ```
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Providers
+
+| Name | Version |
+|------|---------|
+| aws | n/a |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| vpc_name | The id of the VPC that EFS will be deployed to | string | | yes |
-| name | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | string | | yes |
-| security_group_ingress | Can be specified multiple times for each ingress rule. Each ingress block supports fields documented below | list(object) | | no |
-| security_group_egress | Can be specified multiple times for each egress rule. Each egress block supports fields documented below | list(object) | | no |
-| subnet_filter | Tag name to filter on for the EFS mount targets | string | "private" | no
-| tags | A map of tags to add to all resources | map(string) | {} | no
+|------|-------------|------|---------|:-----:|
+| name | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | `string` | n/a | yes |
+| security\_group\_egress | Can be specified multiple times for each egress rule. | <pre>list(object({<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>]</pre> | no |
+| security\_group\_ingress | Can be specified multiple times for each ingress rule. | <pre>list(object({<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>[<br>  {<br>    "cidr_blocks": [],<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>]</pre> | no |
+| subnet\_ids | Subnet IDs for Mount Targets | `list(string)` | n/a | yes |
+| tags | A map of tags to add to all resources | `map(string)` | `{}` | no |
+| vpc\_id | The name of the VPC that EFS will be deployed to | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
 | arn | EFS ARN |
-| id | EFS ID | 
-| dns_name | EFS DNS name |
-| security_group_id | EFS Security Group ID |
-| security_group_arn | EFS Security Group ARN |
-| security_group_name | EFS Security Group name |
+| dns\_name | EFS DNS name |
+| id | EFS ID |
+| mount\_target\_ids | List of EFS mount target IDs (one per Availability Zone) |
+| security\_group\_arn | EFS Security Group ARN |
+| security\_group\_id | EFS Security Group ID |
+| security\_group\_name | EFS Security Group name |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

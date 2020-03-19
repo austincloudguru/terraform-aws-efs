@@ -9,7 +9,7 @@ output "id" {
 }
 
 output "dns_name" {
-  value = aws_efs_file_system.this.dns_name
+  value       = aws_efs_file_system.this.dns_name
   description = "EFS DNS name"
 }
 
