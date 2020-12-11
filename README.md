@@ -21,7 +21,7 @@ module "efs-0" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6, < 0.14 |
+| terraform | >= 0.12.6, < 0.15 |
 | aws | >= 2.68, < 4.0 |
 
 ## Providers
