@@ -8,7 +8,7 @@ module "efs-0" {
   source        = "AustinCloudGuru/efs/aws"
   version       = "0.4.0"
   vpc_id        = "vpc-0156c7c6959ba5858"
-  efs_name      = "dev-efs"
+  name          = "dev-efs"
   subnet_ids    = ["subnet-05b1a3ffd786709d5", "subnet-0a35212c972a2af05", "subnet-0d0e78f696428aa28"]
   tags          = {
                     Terraform = "true"
@@ -21,7 +21,7 @@ module "efs-0" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6, < 0.14 |
+| terraform | >= 0.12.6, < 0.15 |
 | aws | >= 2.68, < 4.0 |
 
 ## Providers
