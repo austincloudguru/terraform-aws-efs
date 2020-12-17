@@ -3,38 +3,46 @@
 #------------------------------------------------------------------------------
 variable "security_group_ingress" {
   description = "Can be specified multiple times for each ingress rule. "
-  type = list(object({
+  type = map(object({
+    description = string
     from_port   = number
     protocol    = string
     to_port     = number
     self        = bool
     cidr_blocks = list(string)
   }))
-  default = [{
-    from_port   = 2049
-    protocol    = "tcp"
-    to_port     = 2049
-    self        = true
-    cidr_blocks = []
-  }]
+  default = {
+    default = {
+      description = "NFS Inbound"
+      from_port   = 2049
+      protocol    = "tcp"
+      to_port     = 2049
+      self        = true
+      cidr_blocks = []
+    }
+  }
 }
 
 variable "security_group_egress" {
   description = "Can be specified multiple times for each egress rule. "
-  type = list(object({
+  type = map(object({
+    description = string
     from_port   = number
     protocol    = string
     to_port     = number
     self        = bool
     cidr_blocks = list(string)
   }))
-  default = [{
-    from_port   = 0
-    protocol    = "-1"
-    to_port     = 0
-    self        = false
-    cidr_blocks = ["0.0.0.0/0"]
-  }]
+  default = {
+    default = {
+      description = "Allow All Outbound"
+      from_port   = 0
+      protocol    = "-1"
+      to_port     = 0
+      self        = false
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
 }
 
 variable "name" {
