@@ -15,6 +15,26 @@ terraform {
 
 data "aws_availability_zones" "available" {
 }
+locals {
+  security_group_ingress = {
+    default = {
+      description = "NFS Inbound"
+      from_port   = 2049
+      protocol    = "tcp"
+      to_port     = 2049
+      self        = true
+      cidr_blocks = []
+    },
+    ssh = {
+      description = "ssh"
+      from_port   = 22
+      protocol    = "tcp"
+      to_port     = 22
+      self        = true
+      cidr_blocks = []
+    }
+  }
+}
 
 #------------------------------------------------------------------------------
 # Setup the VPC
@@ -39,10 +59,11 @@ module "vpc" {
 # Deploy the EFS
 #------------------------------------------------------------------------------
 module "efs" {
-  source     = "../../"
-  vpc_id     = module.vpc.vpc_id
-  name       = "dev-efs"
-  subnet_ids = module.vpc.private_subnets
+  source                 = "../../"
+  vpc_id                 = module.vpc.vpc_id
+  name                   = "dev-efs"
+  subnet_ids             = module.vpc.private_subnets
+  security_group_ingress = local.security_group_ingress
   tags = {
     Terraform   = "true"
     Environment = "development"
