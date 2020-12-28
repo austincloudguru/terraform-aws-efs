@@ -44,6 +44,9 @@ resource "aws_security_group_rule" "this_egress" {
 
 resource "aws_efs_file_system" "this" {
   creation_token = var.name
+  encrypted                       = var.encrypted
+  kms_key_id                      = var.kms_key_id
+
   tags = merge(
     {
       "Name" = var.name
