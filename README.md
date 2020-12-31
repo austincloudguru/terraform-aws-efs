@@ -6,7 +6,7 @@ Terraform module that creates an Elastic File System on AWS along with the mount
 ```hcl
 module "efs-0" {
   source                 = "AustinCloudGuru/efs/aws"
-  version                = "0.6.0"
+  version                = "0.6.1"
   vpc_id                 = "vpc-0156c7c6959ba5858"
   name                   = "dev-efs"
   subnet_ids             = ["subnet-05b1a3ffd786709d5", "subnet-0a35212c972a2af05", "subnet-0d0e78f696428aa28"]
@@ -52,6 +52,8 @@ module "efs-0" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| encrypted | If true, the file system will be encrypted | `bool` | `false` | no |
+| kms\_key\_id | If set, use a specific KMS key | `string` | `null` | no |
 | name | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | `string` | n/a | yes |
 | security\_group\_egress | Can be specified multiple times for each egress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "description": "Allow All Outbound",<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>}</pre> | no |
 | security\_group\_ingress | Can be specified multiple times for each ingress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [],<br>    "description": "NFS Inbound",<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>}</pre> | no |

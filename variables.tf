@@ -67,13 +67,13 @@ variable "tags" {
 }
 
 variable "encrypted" {
-  type        = bool
   description = "If true, the file system will be encrypted"
+  type        = bool
   default     = false
 }
 
 variable "kms_key_id" {
-  type        = string
   description = "If set, use a specific KMS key"
+  type        = string
   default     = null
 }
