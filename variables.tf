@@ -77,3 +77,29 @@ variable "kms_key_id" {
   type        = string
   default     = null
 }
+
+variable "lifecycle_policy" {
+  description = "Lifecycle Policy for the EFS Filesystem"
+  type = list(object({
+    transition_to_ia = string
+  }))
+  default = []
+}
+
+variable "performance_mode" {
+  description = "The file system performance mode."
+  type        = string
+  default     = null
+}
+
+variable "throughput_mode" {
+  description = "Throughput mode for the file system."
+  type        = string
+  default     = null
+}
+
+variable "provisioned_throughput_in_mibps" {
+  description = "The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput_mode set to provisioned."
+  type        = string
+  default     = null
+}
