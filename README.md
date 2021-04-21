@@ -42,54 +42,55 @@ module "efs-0" {
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.6, < 0.15 |
-| aws | >= 2.68, < 4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.6, < 0.16 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 2.68, < 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| aws | >= 2.68, < 4.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 2.68, < 4.0 |
 
 ## Modules
 
-No Modules.
+No modules.
 
 ## Resources
 
-| Name |
-|------|
-| [aws_efs_file_system](https://registry.terraform.io/providers/hashicorp/aws/4.0/docs/resources/efs_file_system) |
-| [aws_efs_mount_target](https://registry.terraform.io/providers/hashicorp/aws/4.0/docs/resources/efs_mount_target) |
-| [aws_security_group_rule](https://registry.terraform.io/providers/hashicorp/aws/4.0/docs/resources/security_group_rule) |
-| [aws_security_group](https://registry.terraform.io/providers/hashicorp/aws/4.0/docs/resources/security_group) |
+| Name | Type |
+|------|------|
+| [aws_efs_file_system.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_file_system) | resource |
+| [aws_efs_mount_target.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/efs_mount_target) | resource |
+| [aws_security_group.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_security_group_rule.this_egress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.this_ingress](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| encrypted | If true, the file system will be encrypted | `bool` | `false` | no |
-| kms\_key\_id | If set, use a specific KMS key | `string` | `null` | no |
-| lifecycle\_policy | Lifecycle Policy for the EFS Filesystem | <pre>list(object({<br>    transition_to_ia = string<br>  }))</pre> | `[]` | no |
-| name | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | `string` | n/a | yes |
-| performance\_mode | The file system performance mode. | `string` | `null` | no |
-| provisioned\_throughput\_in\_mibps | The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput\_mode set to provisioned. | `string` | `null` | no |
-| security\_group\_egress | Can be specified multiple times for each egress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "description": "Allow All Outbound",<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>}</pre> | no |
-| security\_group\_ingress | Can be specified multiple times for each ingress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [],<br>    "description": "NFS Inbound",<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>}</pre> | no |
-| subnet\_ids | Subnet IDs for Mount Targets | `list(string)` | n/a | yes |
-| tags | A map of tags to add to all resources | `map(string)` | `{}` | no |
-| throughput\_mode | Throughput mode for the file system. | `string` | `null` | no |
-| vpc\_id | The name of the VPC that EFS will be deployed to | `string` | n/a | yes |
+| <a name="input_encrypted"></a> [encrypted](#input\_encrypted) | If true, the file system will be encrypted | `bool` | `false` | no |
+| <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | If set, use a specific KMS key | `string` | `null` | no |
+| <a name="input_lifecycle_policy"></a> [lifecycle\_policy](#input\_lifecycle\_policy) | Lifecycle Policy for the EFS Filesystem | <pre>list(object({<br>    transition_to_ia = string<br>  }))</pre> | `[]` | no |
+| <a name="input_name"></a> [name](#input\_name) | A unique name (a maximum of 64 characters are allowed) used as reference when creating the Elastic File System to ensure idempotent file system creation. | `string` | n/a | yes |
+| <a name="input_performance_mode"></a> [performance\_mode](#input\_performance\_mode) | The file system performance mode. | `string` | `null` | no |
+| <a name="input_provisioned_throughput_in_mibps"></a> [provisioned\_throughput\_in\_mibps](#input\_provisioned\_throughput\_in\_mibps) | The throughput, measured in MiB/s, that you want to provision for the file system. Only applicable with throughput\_mode set to provisioned. | `string` | `null` | no |
+| <a name="input_security_group_egress"></a> [security\_group\_egress](#input\_security\_group\_egress) | Can be specified multiple times for each egress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [<br>      "0.0.0.0/0"<br>    ],<br>    "description": "Allow All Outbound",<br>    "from_port": 0,<br>    "protocol": "-1",<br>    "self": false,<br>    "to_port": 0<br>  }<br>}</pre> | no |
+| <a name="input_security_group_ingress"></a> [security\_group\_ingress](#input\_security\_group\_ingress) | Can be specified multiple times for each ingress rule. | <pre>map(object({<br>    description = string<br>    from_port   = number<br>    protocol    = string<br>    to_port     = number<br>    self        = bool<br>    cidr_blocks = list(string)<br>  }))</pre> | <pre>{<br>  "default": {<br>    "cidr_blocks": [],<br>    "description": "NFS Inbound",<br>    "from_port": 2049,<br>    "protocol": "tcp",<br>    "self": true,<br>    "to_port": 2049<br>  }<br>}</pre> | no |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | Subnet IDs for Mount Targets | `list(string)` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to all resources | `map(string)` | `{}` | no |
+| <a name="input_throughput_mode"></a> [throughput\_mode](#input\_throughput\_mode) | Throughput mode for the file system. | `string` | `null` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The name of the VPC that EFS will be deployed to | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| arn | EFS ARN |
-| dns\_name | EFS DNS name |
-| id | EFS ID |
-| mount\_target\_ids | List of EFS mount target IDs (one per Availability Zone) |
-| security\_group\_arn | EFS Security Group ARN |
-| security\_group\_id | EFS Security Group ID |
-| security\_group\_name | EFS Security Group name |
+| <a name="output_arn"></a> [arn](#output\_arn) | EFS ARN |
+| <a name="output_dns_name"></a> [dns\_name](#output\_dns\_name) | EFS DNS name |
+| <a name="output_id"></a> [id](#output\_id) | EFS ID |
+| <a name="output_mount_target_ids"></a> [mount\_target\_ids](#output\_mount\_target\_ids) | List of EFS mount target IDs (one per Availability Zone) |
+| <a name="output_security_group_arn"></a> [security\_group\_arn](#output\_security\_group\_arn) | EFS Security Group ARN |
+| <a name="output_security_group_id"></a> [security\_group\_id](#output\_security\_group\_id) | EFS Security Group ID |
+| <a name="output_security_group_name"></a> [security\_group\_name](#output\_security\_group\_name) | EFS Security Group name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
