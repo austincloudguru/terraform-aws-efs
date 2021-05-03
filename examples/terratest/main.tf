@@ -30,8 +30,8 @@ locals {
       from_port   = 22
       protocol    = "tcp"
       to_port     = 22
-      self        = true
-      cidr_blocks = []
+      self        = false
+      cidr_blocks = ["10.0.0.0/16"]
     }
   }
 }
