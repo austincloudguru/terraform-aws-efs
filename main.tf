@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "this_ingress" {
   from_port         = lookup(each.value, "from_port", null)
   protocol          = lookup(each.value, "protocol", null)
   to_port           = lookup(each.value, "to_port", null)
-  self              = lookup(each.value, "self", null)
+  self              = lookup(each.value, "self", null) == false ? null : each.value.self
   cidr_blocks       = lookup(each.value, "cidr_blocks", null)
 }
 
@@ -38,7 +38,7 @@ resource "aws_security_group_rule" "this_egress" {
   from_port         = lookup(each.value, "from_port", null)
   protocol          = lookup(each.value, "protocol", null)
   to_port           = lookup(each.value, "to_port", null)
-  self              = lookup(each.value, "self", null)
+  self              = lookup(each.value, "self", null) == false ? null : each.value.self
   cidr_blocks       = lookup(each.value, "cidr_blocks", null)
 }
 

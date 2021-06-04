@@ -23,7 +23,7 @@ locals {
       protocol    = "tcp"
       to_port     = 2049
       self        = true
-      cidr_blocks = []
+      cidr_blocks = null
     },
     ssh = {
       description = "ssh"

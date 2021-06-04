@@ -18,7 +18,7 @@ variable "security_group_ingress" {
       protocol    = "tcp"
       to_port     = 2049
       self        = true
-      cidr_blocks = []
+      cidr_blocks = null
     }
   }
 }
