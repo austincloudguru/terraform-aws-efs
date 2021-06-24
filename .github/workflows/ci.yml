@@ -37,3 +37,10 @@ jobs:
 
       - name: Run the Tests
         run: cd ./test; go test -v
+
+      - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
