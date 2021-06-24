@@ -1,9 +1,13 @@
 name: CI
 on:
+  schedule:
+    - cron: "0 10 * * 6"
   pull_request:
     branches:
       - master
   push:
+
+concurrency: terraform-aws-efs
 
 jobs:
 
@@ -37,6 +41,7 @@ jobs:
         run: cd ./test; go test -v
 
       - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.5
         with:
