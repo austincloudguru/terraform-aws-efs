@@ -61,12 +61,12 @@ module "vpc" {
 module "efs" {
   source                 = "../../"
   vpc_id                 = module.vpc.vpc_id
-  name                   = "dev-efs"
+  name                   = "terratest-efs"
   subnet_ids             = module.vpc.private_subnets
   security_group_ingress = local.security_group_ingress
   lifecycle_policy       = [{ "transition_to_ia" = "AFTER_30_DAYS" }]
   tags = {
     Terraform   = "true"
-    Environment = "development"
+    Environment = "terratest"
   }
 }
