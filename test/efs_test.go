@@ -9,11 +9,7 @@ import (
 func TestExamplesTerraform(t *testing.T) {
 	t.Parallel()
 	terraformOpts := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		// Our Terraform code is in the /aws folder.
 		TerraformDir: "../examples/terratest/",
-		// BackendConfig: map[string]interface{}{
-		// 	"path": "/go/src/terraform.state",
-		// },
 	})
 
 	defer terraform.Destroy(t, terraformOpts)
@@ -28,6 +24,5 @@ func TestExamplesTerraform(t *testing.T) {
 
 	efsSgName := terraform.Output(t, terraformOpts, "sg_name")
 	assert.Contains(t, efsSgName, "terratest-efs")
-
 
 }
