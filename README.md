@@ -7,7 +7,8 @@ Terraform module that creates an Elastic File System on AWS along with the mount
 ```hcl
 module "efs-0" {
   source                 = "AustinCloudGuru/efs/aws"
-  version                = "1.0.0"
+  # You should pin the module to a specific version
+  # version              = "x.x.x"
   vpc_id                 = "vpc-0156c7c6959ba5858"
   name                   = "dev-efs"
   subnet_ids             = ["subnet-05b1a3ffd786709d5", "subnet-0a35212c972a2af05", "subnet-0d0e78f696428aa28"]
