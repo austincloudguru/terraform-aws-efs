@@ -1,4 +1,5 @@
 # AWS EFS Terraform Module
+[![CI](https://github.com/austincloudguru/terraform-aws-efs/workflows/CI/badge.svg?event=push)](https://github.com/austincloudguru/terraform-aws-efs/actions?query=workflow%3ACI)
 Terraform module that creates an Elastic File System on AWS along with the mount targets.  It also creates a security group that allows access to 2049 to any instance that has the security group attached to it.  
 
 ## Usage
