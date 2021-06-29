@@ -14,7 +14,7 @@ env:
   terraformVersion: 1.0.1
   goVersion: 1.16
 
-concurrency: ${repositoryName}
+concurrency: ${env.repositoryName}
 
 jobs:
 
@@ -29,13 +29,13 @@ jobs:
       - name: Setup Terraform  
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ${terraformVersion}
+          terraform_version: ${env.terraformVersion}
           terraform_wrapper: false
       
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: ${goVersion}
+          go-version: ${env.goVersion}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
