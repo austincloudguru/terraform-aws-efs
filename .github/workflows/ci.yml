@@ -10,11 +10,11 @@ on:
       - master
 
 env:
-  repositoryName: terraform-aws-efs
-  terraformVersion: 1.0.1
+  REPO_NAME: terraform-aws-efs
+  TERRAFORM_VERSION: 1.0.1
   GO_VERSION: 1.16
 
-concurrency: ${env.repositoryName}
+concurrency: ${{ env.REPO_NAME }}
 
 jobs:
 
@@ -29,7 +29,7 @@ jobs:
       - name: Setup Terraform  
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ${env.terraformVersion}
+          terraform_version: ${{ env.TERRAFORM_VERSION  }}
           terraform_wrapper: false
       
       - name: Set up Go
