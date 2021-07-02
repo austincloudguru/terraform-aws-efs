@@ -17,7 +17,7 @@ concurrency: terraform-aws-efs
 
 jobs:
   build:
-    name: Test Nessus Appliance Module
+    name: Test EFS Module
     runs-on: ubuntu-latest
 
     steps:
