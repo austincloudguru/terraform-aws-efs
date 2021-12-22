@@ -8,7 +8,7 @@ on:
   push:
 
 env:
-  TERRAFORM_VERSION: 1.0.1
+  TERRAFORM_VERSION: 1.1.2
   GO_VERSION: 1.16
   AWS_REGION: "us-west-2"
 
@@ -27,7 +27,7 @@ jobs:
       - name: Setup Terraform  
         uses: hashicorp/setup-terraform@v1
         with:
-          terraform_version: ${{ env.TERRAFORM_VERSIONS }}
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
           terraform_wrapper: false
       
       - name: Set up Go
