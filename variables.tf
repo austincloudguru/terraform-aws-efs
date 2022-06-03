@@ -69,7 +69,7 @@ variable "tags" {
 variable "encrypted" {
   description = "If true, the file system will be encrypted"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "kms_key_id" {
