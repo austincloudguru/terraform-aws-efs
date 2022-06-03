@@ -8,7 +8,7 @@ on:
   push:
 
 env:
-  TERRAFORM_VERSION: 1.1.2
+  TERRAFORM_VERSION: 1.2.2
   GO_VERSION: 1.16
   AWS_REGION: "us-west-2"
 
