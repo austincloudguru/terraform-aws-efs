@@ -79,3 +79,11 @@ resource "aws_efs_mount_target" "this" {
     aws_security_group.this.id
   ]
 }
+
+resource "aws_efs_backup_policy" "this" {
+  file_system_id = aws_efs_file_system.this.id
+
+  backup_policy {
+    status = var.backup_policy_status
+  }
+}
