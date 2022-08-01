@@ -104,8 +104,12 @@ variable "provisioned_throughput_in_mibps" {
   default     = null
 }
 
-variable "backup_enable" {
-  description = "Enable/disable backup for EFS Filesystem"
-  type        = bool
-  default     = false
+variable "backup_policy_status" {
+  description = "Enable/disable backup for EFS Filesystem.  Value should be ENABLE/DISABLED.  Defaults to DISABLED"
+  type        = string
+  default     = "DISABLED"
+  validation {
+    condition     = var.backup_policy_status == "ENABLED" || var.backup_policy_status == "DISABLED"
+    error_message = "Sorry, value must be either 'ENABLED' or 'DISABLED'."
+  }
 }

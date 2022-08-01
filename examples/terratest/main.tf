@@ -65,10 +65,10 @@ module "efs" {
   subnet_ids             = module.vpc.private_subnets
   security_group_ingress = local.security_group_ingress
   lifecycle_policy       = [{ "transition_to_ia" = "AFTER_30_DAYS" }]
-  backup_enable          = true
+  backup_policy_status   = "ENABLED"
   tags = {
     Terraform   = "true"
     Environment = "terratest"
   }
-  
+
 }
