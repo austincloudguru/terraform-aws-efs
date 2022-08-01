@@ -103,3 +103,9 @@ variable "provisioned_throughput_in_mibps" {
   type        = string
   default     = null
 }
+
+variable "backup_enable" {
+  description = "Enable/disable backup for EFS Filesystem"
+  type        = bool
+  default     = false
+}
