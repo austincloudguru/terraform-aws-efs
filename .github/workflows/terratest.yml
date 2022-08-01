@@ -8,8 +8,8 @@ on:
   push:
 
 env:
-  TERRAFORM_VERSION: 1.2.2
-  GO_VERSION: 1.16
+  TERRAFORM_VERSION: 1.2.6
+  GO_VERSION: 1.18
   AWS_REGION: "us-west-2"
 
 # Set to the repository name
