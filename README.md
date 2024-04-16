@@ -1,5 +1,5 @@
 # AWS EFS Terraform Module
-[![Terratest](https://github.com/austincloudguru/terraform-aws-efs/workflows/Terratest/badge.svg?event=push)](https://github.com/austincloudguru/terraform-aws-efs/actions?query=workflow%3ATerratest)
+[![Terratest](https://github.com/austincloudguru/terraform-aws-efs/workflows/Terratest/badge.svg)](https://github.com/austincloudguru/terraform-aws-efs/actions?query=workflow%3ATerratest)
 ![Latest Version](https://img.shields.io/github/v/tag/austincloudguru/terraform-aws-efs?sort=semver&label=Latest%20Version)
 [![License](https://img.shields.io/github/license/austincloudguru/terraform-aws-efs)](https://github.com/austincloudguru/terraform-aws-efs/blob/master/LICENSE)
 

@@ -3,7 +3,7 @@ name: Release
 'on':
   push:
     branches:
-      - master
+      - main
 
 permissions: read-all
 
@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Bump version and push tag
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
