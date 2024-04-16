@@ -4,8 +4,11 @@ on:
     - cron: "0 10 * * 6"
   pull_request:
     branches:
-      - master
+      - main
   push:
+    paths-ignore:
+      - '**/README.md'
+
 
 permissions: read-all
 
