@@ -5,8 +5,6 @@ name: Release
     branches:
       - main
 
-permissions: read-all
-
 jobs:
   release:
     name: Release
